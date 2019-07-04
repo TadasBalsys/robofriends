@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Card from "./Card";
+import CardList from "./CardList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import $ from "jquery";
 import Popper from "popper.js";
@@ -15,11 +15,7 @@ import { robots } from "./robots";
 
 ReactDOM.render(
   <div className="container">
-    <div className="row">
-      <Card robot={robots[0]} />
-      <Card robot={robots[1]} />
-      <Card robot={robots[2]} />
-    </div>
+    <CardList robots={robots} />
   </div>,
   document.getElementById("root")
 );
