@@ -6,7 +6,7 @@ const cardStyle = {
 
 const Card = ({ robot: { name, email, id } }) => {
   return (
-    <div className="card m-2 bg-warning" style={cardStyle}>
+    <div className="card col-3 myCardStyle">
       <img
         className="card-img-top"
         src={`https://robohash.org/${id}?size=150x150`}

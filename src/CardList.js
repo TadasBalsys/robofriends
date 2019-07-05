@@ -1,12 +1,15 @@
 import React from "react";
 import Card from "./Card";
 
+
 const CardList = ({ robots }) => {
   return (
-    <div className="row">
-      {robots.map((user, i) => {
-        return <Card key={user.id} robot={user} />;
-      })}
+    <div className="container">
+      <div className='row'>
+        {robots.map((user, i) => {
+          return <Card key={user.id} robot={user} />;
+        })}
+      </div>
     </div>
   );
 };
