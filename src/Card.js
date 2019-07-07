@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const cardStyle = {
   width: "16rem"
 };
@@ -13,11 +14,11 @@ const Card = ({ robot: { name, email, id } }) => {
         alt=""
       />
       <div className="card-body text-center">
-        <h1 className="card-title">{name}</h1>
+        <h4 className="card-title letsTryId"  >{name}</h4>
         <p className="card-text">{email}</p>
       </div>
     </div>
   );
+  
 };
-
 export default Card;
