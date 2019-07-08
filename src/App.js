@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SearchBox from "./SearchBox";
 import CardList from "./CardList";
+import Scroll from "./Scroll.js";
 
 class App extends Component {
   constructor() {
@@ -12,8 +13,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-   fetch("https://jsonplaceholder.typicode.com/users").then(
-      response => response.json().then(users => this.setState({robots: users}))
+    fetch("https://jsonplaceholder.typicode.com/users").then(response =>
+      response.json().then(users => this.setState({ robots: users }))
     );
   }
 
@@ -27,15 +28,17 @@ class App extends Component {
         .toLocaleLowerCase()
         .includes(this.state.searchField.toLocaleLowerCase());
     });
-    
+
     if (!this.state.robots.length) {
-      return <h1 className='text-center'>Loading...</h1>;
+      return <h1 className="text-center">Loading...</h1>;
     }
     return (
-      <div className="container">
+      <div className="container-fluid w-100">
         <div className="row ">
           <SearchBox searchChange={this.onSearchChange} />
-          <CardList robots={filterRobots} />
+          <Scroll>
+            <CardList robots={filterRobots} />
+          </Scroll>
         </div>
       </div>
     );
