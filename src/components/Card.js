@@ -1,10 +1,5 @@
 import React from "react";
 
-
-const cardStyle = {
-  width: "16rem"
-};
-
 const Card = ({ robot: { name, email, id } }) => {
   return (
     <div className="card col-3 myCardStyle">

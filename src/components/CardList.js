@@ -3,6 +3,9 @@ import Card from "./Card";
 
 
 const CardList = ({ robots }) => {
+  // if(true){
+  //   throw new Error("Error");
+  // }  
   return (
     <div className="container-fluid">
       <div className='row'>
