@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // Redux 
-import { Provider } from "react-redux";
+import { Provider } from "react-redux"; 
 import { createStore } from "redux";
 
-import App from "../src/containers/App";
+import App from "../src/containers/App"; 
 import { searchRobots } from "./reducers";
 import "./index.css"
 import "./card.css";
