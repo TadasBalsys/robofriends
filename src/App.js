@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import SearchBox from "./SearchBox";
 import CardList from "./CardList";
-import { robots } from "./robots";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      robots: robots,
+      robots: [],
       searchField: ""
     };
+  }
+
+  componentDidMount() {
+   fetch("https://jsonplaceholder.typicode.com/users").then(
+      response => response.json().then(users => this.setState({robots: users}))
+    );
   }
 
   onSearchChange = event => {
@@ -22,6 +27,10 @@ class App extends Component {
         .toLocaleLowerCase()
         .includes(this.state.searchField.toLocaleLowerCase());
     });
+    
+    if (!this.state.robots.length) {
+      return <h1 className='text-center'>Loading...</h1>;
+    }
     return (
       <div className="container">
         <div className="row ">
