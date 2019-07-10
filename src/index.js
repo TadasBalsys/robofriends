@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// Redux 
-import { Provider } from "react-redux"; 
-import { createStore } from "redux";
+// Redux
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import { createLogger } from "redux-logger";
+import thunkMiddleware from "redux-thunk";
+import { searchRobots, requestRobots } from "./reducers";
 
-import App from "../src/containers/App"; 
-import { searchRobots } from "./reducers";
-import "./index.css"
+import App from "../src/containers/App";
+import "./index.css";
 import "./card.css";
 
 // Bootstrap
@@ -18,11 +20,16 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import * as serviceWorker from "./serviceWorker";
 
 // const  store is Redux Store - place were all states is.
-const store = createStore(searchRobots);
+const logger = createLogger();
+const rootReducer = combineReducers({ searchRobots, requestRobots });
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunkMiddleware, logger)
+);
 
 ReactDOM.render(
-    // Provider component from react-redux will pass store (a.k.a State) to all components down to component tree
-    // The store us is rootReducer or what ever reducers (this case searchRobots) to create the store.
+  // Provider component from react-redux will pass store (a.k.a State) to all components down to component tree
+  // The store us is rootReducer or what ever reducers (this case searchRobots) to create the store.
   <Provider store={store}>
     <App />
   </Provider>,

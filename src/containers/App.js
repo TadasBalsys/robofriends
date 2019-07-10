@@ -1,7 +1,7 @@
 // App.js is called Container or Smart Component
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setSearchField } from "../actions";
+import { setSearchField, requestRobots } from "../actions";
 import SearchBox from "../components/SearchBox";
 import CardList from "../components/CardList";
 import Scroll from "../components/Scroll";
@@ -12,7 +12,10 @@ import ErrorBoundry from "../components/ErrorBoundry";
 const mapStateToProps = state => {
   // searchField state, that going to be return by mapStateToProps function, which is going to be used as props by the App. That state is going to come from the state.searchRobots.searchField (which comes from reducers.js.) Because in index.js store is created and searchRobots is passed as property, now I can use sate.searchRobots
   return {
-    searchField: state.searchField
+    searchField: state.searchRobots.searchField,
+    robots: state.requestRobots.robots,
+    isPending: state.requestRobots.isPending,
+    error: state.requestRobots.error
   };
 };
 
@@ -21,35 +24,26 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   // dispatch is what triggers the action. The action (setSearchField) is an object which is created in actions.js. In order to send this action, there is a need of dispatch() to send the action to reducer
   return {
-    onSearchChange: event => dispatch(setSearchField(event.target.value))
+    onSearchChange: event => dispatch(setSearchField(event.target.value)),
+    onRequestRobots: () => dispatch(requestRobots())
   };
 };
 // End of Redux setup
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      robots: []
-    };
-  }
-
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/users").then(response =>
-      response.json().then(users => this.setState({ robots: users }))
-    );
+    this.props.onRequestRobots();
   }
 
   render() {
-    const { robots } = this.state;
-    const { searchField, onSearchChange } = this.props;
+    const { searchField, onSearchChange, robots, isPending } = this.props;
     const filterRobots = robots.filter(robot => {
       return robot.name
         .toLocaleLowerCase()
         .includes(searchField.toLocaleLowerCase());
     });
 
-    return !robots.length ? (
+    return isPending ? (
       <h1 className="text-center">Loading...</h1>
     ) : (
       <div className="container-fluid w-100">
