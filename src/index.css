@@ -64,5 +64,7 @@ h1 {
   font-family: "SEGA LOGO FONT";
   font-size: 56px!important;
   font-weight: 200;
-  color: #225c5a
+  color: #225c5a;
+  text-align: center;
 }
+
