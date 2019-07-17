@@ -10,7 +10,7 @@ class Header extends Component {
   render() {
     console.log("Header");
     return (
-      <div className="text-center col-12 mt-5">
+      <div className="text-center col-12 mt-2">
         <h1>RoboFriends</h1>
         <CounterButton  color={'red'}/>
       </div>
