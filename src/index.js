@@ -8,13 +8,13 @@ import thunkMiddleware from "redux-thunk";
 import { searchRobots, requestRobots } from "./reducers";
 
 import App from "../src/containers/App";
-import "./index.css";
-import "./card.css";
 
 // Bootstrap
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
+import "./index.css";
+import "./card.css";
 import * as serviceWorker from "./serviceWorker";
 
 // const  store is Redux Store - place were all states is.
@@ -37,4 +37,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();

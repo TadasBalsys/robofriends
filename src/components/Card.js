@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = ({ robot: { name, email, id } }) => {
   return (
-    <div className="col-3">
+    <div className="col-md-4 col-xl-3 col-12">
       <div className="card myCardStyle">
         <img
           className="card-img-top"

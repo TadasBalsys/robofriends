@@ -62,9 +62,18 @@ code {
 
 h1 {
   font-family: "SEGA LOGO FONT";
-  font-size: 56px!important;
+  font-size: 56px;
   font-weight: 200;
   color: #225c5a;
   text-align: center;
 }
 
+input{
+  width: 260px;
+}
+
+@media(max-width: 600px){
+  h1{
+    font-size: 2.5rem;
+  }
+}
