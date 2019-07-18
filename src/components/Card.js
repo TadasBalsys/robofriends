@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = ({ robot: { name, email, id } }) => {
+const Card = ({ name, email, id } ) => {
   return (
     <div className="col-md-4 col-xl-3 col-12">
       <div className="card myCardStyle">

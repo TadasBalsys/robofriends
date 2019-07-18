@@ -6,7 +6,7 @@ import SearchBox from "../components/SearchBox";
 import CardList from "../components/CardList";
 import Scroll from "../components/Scroll";
 import ErrorBoundry from "../components/ErrorBoundry";
-import Header from '../components/Header';
+import Header from "../components/Header";
 
 // Some Redux setup
 // mapStateToProps tels what piece of state in store need to be listen to and send props to component tree.
@@ -44,17 +44,19 @@ class App extends Component {
         .includes(searchField.toLocaleLowerCase());
     });
 
-    return isPending ? (
-      <h1 className="text-center">Loading...</h1>
-    ) : (
+    return (
       <div className="container-fluid w-100">
         <div className="row ">
           <Header />
           <SearchBox searchChange={onSearchChange} />
           <Scroll>
-            <ErrorBoundry>
-              <CardList robots={filterRobots} />
-            </ErrorBoundry>
+            {isPending ? (
+              <h1 className="text-center">Loading...</h1>
+            ) : (
+              <ErrorBoundry>
+                <CardList robots={filterRobots} />
+              </ErrorBoundry>
+            )}
           </Scroll>
         </div>
       </div>
